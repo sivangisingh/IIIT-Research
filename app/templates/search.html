@@ -1,0 +1,68 @@
+{% extends 'header.html' %}
+{% block body %}  
+<div class="container">
+	<h3 class="text-center">Stduents</h3>
+{% if student_list ==[] %}
+<div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px;margin: 10px;">
+      <div ><h4 class="text-center">No students by this name...!!</h4>
+      </div>
+    </div>
+{% endif %}
+{% for info in student_list  %}
+<div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px;margin-right:20%; margin-left: 20%;">
+<div align="center"><a href="/about/{{info[0]}}">{{info[3]}} : {{info[1]}}  ({{info[0]}})</a></div>
+</div>
+<br>
+{% endfor %}
+
+<h3 class="text-center">Professor</h3>
+{% if prof_list ==[] %}
+<div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px;margin: 10px;">
+      <div ><h4 class="text-center">No professor by this name...!!</h4>
+      </div>
+    </div>
+{% endif %}
+{% for info in prof_list  %}
+<div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px;margin-right:20%; margin-left: 20%;">
+<div align="center"><a href="/about/{{info[0]}}">{{info[3]}} : {{info[1]}}  ({{info[0]}})</a></div>
+</div>
+<br>
+{% endfor %}
+<h3 class="text-center">Lab</h3>
+{% if lab_list ==[] %}
+<div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px;margin: 10px;">
+      <div ><h4 class="text-center">No lab by this name...!!</h4>
+      </div>
+    </div>
+{% endif %}
+{% for info in lab_list  %}
+<div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px;margin-right:20%; margin-left: 20%;">
+<div align="center"><a href="/lab_info/{{info[0]}}">{{info[0]}}</a></div>
+</div>
+<br>
+{% endfor %}
+<h3 class="text-center">Research Area</h3>
+{% if i_list ==[] %}
+<div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px;margin: 10px;">
+      <div ><h4 class="text-center">No Post by this Research Area...!!</h4>
+      </div>
+    </div>
+{% endif %}
+{% for post in i_list %}
+
+  <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;border-radius:50px;margin:15px ">
+ <h3 style="text-align:center;">Research Area:{{post[1]}}</h3>
+  <p class="text-center">
+     Lab: <a href="">{{post[2]}}</a><br>
+    Professor: <a href="/about/{{post[4]}}">{{post[4]}}</a><br>
+  </p>
+  <p class="text-center"><b>About</b><br>{{post[7]}}</p>
+  <p class="text-center"><a href="/show_file/{{post[0][0]}}.pdf"><img class="avatar" src="https://www.zamzar.com/images/filetypes/pdf.png" class="user_image"></a> <a>Download Research Paper</a></p>
+  <p class="text-center">
+          <span class="glyphicon glyphicon-heart" style="color:red;" class="heart"></span> {{post[6]}} votes</a>
+      </p>
+</div><br>
+{% endfor %}
+</div>
+
+{% endblock %}

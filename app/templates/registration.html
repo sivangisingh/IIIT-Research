@@ -1,0 +1,61 @@
+
+{% extends 'login_reg.html' %}
+{% block body %}    
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <script type="text/javascript">
+        var msg = {{messages | safe}};
+        alert(msg[0]);
+      </script>
+    {% endif %}
+  {% endwith %}
+  <div style="text-align: center; background-image: url({{ url_for('static',filename='img1.jpg') }}); background-size: 100% 100%; background-repeat: no-repeat; position: fixed; width: 100%; height: 100%; margin: 0;" >
+  <div class="main">
+    <p class="sign" align="center">Sign up</p>
+    <form class="form1" action="/registrationNext" method="POST">
+      <input class="un " type="email" align="center" placeholder="Username" name="id" required><br>
+      <input class="pass" type="password" align="center" placeholder="Password" name="password"><br>
+      <input class="un" type="name" align="center" placeholder="Name" name="name"><br>
+      <select required class='un' onblur="enter_lab();" name="type" style="color: grey;">
+          <option value='default' selected disabled>Student or Professor?</option>
+          <option value='student' >Student</option>
+          <option value='professor' >Professor</option>
+      </select><br>
+      <select required class='un' onblur="enter_lab();" name="lab" style="display: none; color: grey;">
+          <option value='default' selected>Lab Name</option>
+          {% for l in li  %}
+            {% if l[0] != '' %}
+              <option value="{{l[0]}}">{{l[0]}}</option>
+            {% endif %}
+          {% endfor %}
+      </select><br>
+      <button type="submit" class="submit" align="center" onclick="validate();" >Sign up</button><br>
+      <div style="margin:20px;"><a class="submit" align="center" href="{{ url_for('login') }}">Sign in</a></div>   
+    </form>
+    </div>
+  </div>
+    <script type="text/javascript">
+        function enter_lab() {
+          if(document.getElementsByName('type')[0].value == 'professor')
+            document.getElementsByName('lab')[0].style.display = 'inline';
+          if(document.getElementsByName('type')[0].value == 'student' || document.getElementsByName('type')[0].value == 'default')
+            document.getElementsByName('lab')[0].style.display = 'none';
+        }
+        function validate() {
+          if( document.getElementsByName('name')[0].value == "" || document.getElementsByName('password')[0].value == "")
+          {
+            alert('Enter All Details');
+            document.getElementsByName('id')[0].value = "";
+          }
+          if( document.getElementsByName('lab')[0].style.display == 'inline' && document.getElementsByName('lab')[0].value == 'default') 
+          {
+            alert('Enter All Details');
+            document.getElementsByName('id')[0].value = "";
+          }
+          if( !document.getElementsByName('id')[0].checkValidity())
+            document.getElementsByName('id')[0].innerHTML = document.getElementsByName('id')[0].validationMessage;
+        }
+    </script>
+{% endblock %}
+
+

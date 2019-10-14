@@ -1,0 +1,21 @@
+{% extends 'header.html' %}
+{% block body %}  
+<div class="container" style="text-align: center;">
+<h1 style="text-align: center;">
+    List Of Labs
+</h1>
+	<!-- <form action="/professor" method="POST">
+	 -->{% for l in li  %}
+			{% if l[0] != '' %}
+			<!-- <button value={{l[0]}} type="submit" name="lab_name" style="width: 80%; color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px; margin-bottom: 10px; margin-top: 10px; margin-left: 8%; color: grey; text-align: left; border-style: none;">{{l[0]}}</button> -->
+			<div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px;margin: 10px;">
+			<div class="text-center row" ><div class="col"><a href="/lab_info/{{l[0]}}">{{l[0]}}</a ><br></div><div class="col"><a href="/about_lab/{{l[0]}}">Professors under {{l[0]}}</a ></div></div>
+		</div>
+
+
+			{% endif %}
+		{% endfor %}
+	</form>
+</div>
+
+{% endblock %}

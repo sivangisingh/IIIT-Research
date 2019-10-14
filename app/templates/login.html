@@ -1,0 +1,26 @@
+
+{% extends 'login_reg.html' %}
+{% block body %}   
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <script>
+                  var msg = "{{messages | safe }}";
+                  alert( msg[0] );
+                </script>
+            {% endif %}
+        {% endwith %} 
+ <div style="text-align: center; background-image: url({{ url_for('static',filename='img1.jpg') }}); background-size: 100% 100%; background-repeat: no-repeat; position: fixed; width: 100%; height: 100%; margin: 0;" >
+  <div class="main" style="min-height:450px;">
+    <p class="sign" align="center">Sign in</p>
+    <form class="form1" action="/loginNext" method="POST">
+      <input class="un " type="email" align="center" placeholder="Username" name="id" required>
+      <input class="pass" type="password" align="center" placeholder="Password" name="password" required> 
+      <input type="submit" class="submit" align="center" value="Sign in" ></input>
+      <br>
+      </form>
+         <a class="submit" align="center" style="margin-bottom:20px;" ="" href="{{ url_for('registration') }}">Sign up</a>
+                
+    </div>
+  </div>
+{% endblock %}

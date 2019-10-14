@@ -1,0 +1,95 @@
+{% extends 'header.html' %}
+{% block body %}   
+<style type="text/css">
+  .sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 500px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 10; /* Stay at the top */
+    left: 0;
+    /*background-color: #111; /* Black */*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+}
+</style>
+<div class="container">
+<div class="row">
+<div class="sidenav">
+<div class="col-lg-3">
+<div><h3><a href=#post>Most Voted Posts</a></h3></div>
+<div><h3><a href=#prof>Most Followed Professors </a></h3></div>
+<div><h3><a href=#lab>Most Publication's By Labs</a></h3></div>
+
+</div>
+</div>
+<div class="col-lg-3">
+</div>
+<div class="col-lg-9">
+      <h1 style="text-align: center;">
+    Most Voted Post's    
+    </h1>
+
+  <div id="post">
+    {% for post in vote_result %}
+  <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;border-radius:50px;margin:15px ">
+  <h3 style="text-align:center;">Research Area:{{post[0][1]}}</h3>
+  <p class="text-center">
+    Lab:<a href="/lab_info/{{post[0][2]}}">{{post[0][2]}}</a><br>
+    Professor:<a href="/about/{{post[0][4]}}">{{post[0][4]}}</a><br>
+    {% if post[0][8] != post[0][4] %}
+    Student:<a href="/about/{{post[0][3]}}">{{post[0][3]}}</a><br>
+    {% endif %}
+    
+  </p>
+  <p class="text-center"><b>About</b><br>{{post[0][7]}}</p>
+    <p class="text-center">
+          <span class="glyphicon glyphicon-heart" style="{%if post[1]=='T' %}color:red;{%else%}color:black;{%endif%}" class="heart"></span> {{post[0][6]}} votes</a>
+      </p>
+      {% if post[0][9]=="yes" %}
+  <p class="text-center"><a href="/show_file/{{post[0][0]}}.pdf"><img class="avatar" src="https://www.zamzar.com/images/filetypes/pdf.png" class="user_image"></a> <a>Download Research Paper</a></p>
+  {% endif %}
+      <!-- <a href="http://file:///home/ksh/Downloads/navieKNthNum.cpp">kholo</a> -->
+</div><br>
+{% endfor %}
+
+
+  </div>
+  <div id="prof">
+    <h1 style="text-align: center;">
+    Most Followed Professor's    
+    </h1>
+    {% for prof in profs  %}
+
+    <div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px">
+    <div class="text-center"><a href="/about/{{prof[1]}}">{{prof[0]}}</a>
+      <br>
+      <h6>Followers:{{prof[2]}}</h6>
+    </div>
+    </div>
+    <br>
+    {% endfor %}
+  </div>
+  <div id="lab">
+    <h1 style="text-align: center;">
+    Most Publication's By Lab's    
+    </h1>
+    {% for lab in labs %}
+    <div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px">
+    <div class="text-center"><a href=/lab_info/{{lab[0]}}>Lab: {{lab[0]}} </a>
+      <br>
+      <h6>Number of publications :{{lab[1]}}</h6>
+    </div>
+    </div>
+    <br>
+    {% endfor %}
+  </div>
+</div>
+
+
+</div>
+
+</div>
+
+
+{% endblock %}

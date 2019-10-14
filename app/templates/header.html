@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<style>
+ body {
+        background-color: #F3EBF6;
+        font-family: 'Ubuntu', sans-serif;
+    }
+  .user_image{
+    position: absolute;
+    height: 100%;
+    width: 10%;
+    text-align: center; 
+  }
+  .purple{
+    color: linear-gradient(to right, #9C27B0, #E040FB);
+  }
+  .btn {
+    display: none;
+  }
+  input[type=text]{
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+  input[type=text]:focus{
+    width: 100%;
+  }
+  .ulul {
+
+    background: linear-gradient(to right, #9C27B0, #E040FB);
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+    overflow: hidden;
+    background-color: #f3f3f3;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 1px 16px;
+    text-decoration: none;
+}
+.heart{
+  color: black;
+  border-radius: 20px;
+}
+/*li a:hover:not(.active) {
+    background-color: #111;
+}*/
+.avatar{
+  height: 30px;
+}
+.active {
+    background-color: #4CAF50;
+}
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+}
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+    #upper_area {
+      width: 100%;
+      background: linear-gradient(to right, #9C27B0, #E040FB);
+      border-color: blue;
+      border-style: none;
+      border-top-right-radius: 50px;
+      border-top-left-radius: 50px;
+      color: white;
+      padding: 20px;
+      margin: 0;
+    }
+    #post_content {
+      width: 100%;
+      border-style: none;
+      border-bottom-right-radius: 50px;
+      border-bottom-left-radius: 50px;
+      background-color: white;
+      padding: 12px 20px;
+      resize: none;
+      color:  #737373;
+      margin-right: 12px;
+      margin-left: 12px;
+    }
+    .tag_area {
+      width: 100%;
+      border: 2px solid #ccc;
+      background-color: white;
+      padding-left: 20px;
+      padding-bottom: 0px;
+      resize: none;
+      color:  #737373;
+      border-style: none;
+      margin-right: 12px;
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
+    .list_button {
+      border-style: none;
+      background: #fff;
+    }
+    .updt {
+      width: 50%;
+      background-color: #FFFFFF;
+      margin: 7em auto;
+      padding: 5em;
+      border-radius: 1.5em;
+      box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+      text-align: center;
+    }
+    .updt_fields {
+      width: 130px;
+      color: rgb(38, 50, 56);
+      padding: 10px 20px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      background: rgba(136, 126, 126, 0.04);
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      box-sizing: border-box;
+      border: 2px solid rgba(0, 0, 0, 0.02);
+      margin: 20px;
+      text-align: center;
+      font-family: 'Ubuntu', sans-serif;
+      -webkit-transition: width 0.4s ease-in-out;
+      transition: width 0.4s ease-in-out;
+    }
+  }
+</style>
+<title>IIIT Research</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+<ul class="ulul">
+  <li><a href="/timeline">
+          <img class="avatar" src="https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1" class="user_image">
+        </a></li>
+  <li><a href="/index">Home</a></li>
+  <li><a href="/timeline">Timeline</a></li>
+  <li><a href="/about/{{id}}">About</a></li>
+  <li><a href="/trending">Trending</a></li>
+  <li><a href="/lab">Labs</a></li>
+  <li><a href="/professor">Professor</a></li>
+  <li style="float:right"><a href="{{ url_for('logout') }}">Logout</a></li>
+  <form action="/read_search" method="POST">
+  <li style="float:right"><input type="search" id="search_box" name="search_box" placeholder="Search.."></li>
+  </form>
+</ul>
+
+<br><br>
+{% block body %}{% endblock %}
+
+<br><br>
+<div class="row" style="width: 100%; bottom: 0;position: relative;">
+  <ul class="ulul" style="width: 100%">
+    <li style="width: 30%;"><div class="text-center" style="color:black;">Copyright © Ramukaka Corp.</div></li>
+  </ul>
+</div>
+
+</body>
+</html>

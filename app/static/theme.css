@@ -1,0 +1,64 @@
+.scrollToTop
+{
+	background-color:#12a3df;
+	color:#fff
+}
+
+.scrollToTop:hover, .scrollToTop:focus
+{   background-color:#fff; 
+	color:#12a3df; 
+	border-color:1px solid #12a3df
+}
+
+#header
+{
+	background:none repeat scroll 0 0 #12a3df
+}
+
+.navbar-default
+{
+	background-color:#12a3df; 
+    border-color:#12a3df
+}
+
+.search_icon i
+{
+	color:#12a3df
+}
+.search_bar
+{
+	
+	border:2px solid #12a3df
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{background-color:#12a3df}
+.single_widget > h2
+{
+	background-color:#12a3df
+}
+.post_nav figcaption a:hover{color:#12a3df}
+.catg_title:hover{color:#12a3df}
+.middle_content > h2, .featured_title
+{
+	background-color:#12a3df
+}
+.featured_article
+{
+	border-top:6px solid #12a3df
+}
+.article_category > a:hover{color:#12a3df}
+.article_titile a:hover{color:#12a3df}
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus
+{
+	background-color:#12a3df; 
+	color:#fff;
+	border-color:#12a3df
+}
+.single_widget ul li > a:hover
+{
+	color:#12a3df
+}
+.single_widget ul li.active > a:hover
+{
+	color:#12a3df !important; 
+	text-decoration:none
+}

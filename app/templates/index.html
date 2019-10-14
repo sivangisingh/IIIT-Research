@@ -1,0 +1,120 @@
+
+{% extends 'header.html' %}
+{% block body %}
+<div class="w3-row w3">
+  <div class="w3-col m3" style="margin:15px;">
+      <div class="w3-card w3-round" style="border-radius: 20px;">
+        <div class="w3-white" style="border-radius: 20px;">
+          <button onclick="myFunction('Demo1')" class="w3-button w3-block ulul w3-left-align" style="border-radius: 20px;"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Following</button>
+          <div id="Demo1" class="w3-hide w3-container">
+             {% for i in lis %}
+            <a href="/about/{{i[1]}}">{{i[0]}}</a ><br>
+            {% endfor %}
+          </div>
+        </div>  
+  </div></div>
+  <div class="w3-col m8">
+<div style="margin:15px;">
+    <div class="row" id='upper_area' >
+      <div class="col-lg-9">
+        <b>Write A Post</b>
+      </div>
+      <div class="col-lg">
+        <button class="heart" style="margin: 1px; border-style: none; border-radius: 20px; background: linear-gradient(to right, #9C27B0, #E040FB);color: white;" onclick="clear_post();">Clear</button>
+      </div>
+      <form action="/insert_post" method="POST" enctype="multipart/form-data">
+      <div class="col-lg">
+        <button class="heart" style="margin: 1px; border-style: none; border-radius: 20px; background: linear-gradient(to right, #9C27B0, #E040FB);color: white;">POST</button>
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col" style="background-color: white;margin-left:12px; text-align: center;">
+        <input type="text" id="research_area" required name="research_area" placeholder="Research Area" style="width: 75%; padding: 10px; margin-top: 5px; border-style: none; border-radius: 20px;">
+      </div>
+      <div class='col' style="background-color: white;text-align: center;">
+          {% if session['type'][0]=='student' %}
+          <select class="sel" id="prof" required name="prof" style="width: 50%; padding: 10px; margin: 5px; border-style: none; border-radius: 20px; color: grey;">
+                  <option value='default' selected disabled>Tag Prof</option>
+                  {% for l in all_prof  %}
+                    {% if l[0] != '' %}
+                  <option value="{{l[1]}}">{{l[0]}}</option>
+
+                    {% endif %}
+                  {% endfor %}
+            </select><br>
+            {% endif %}
+      </div>
+      <div class='col' style="background-color: white; text-align: center;">
+        <select class="sel" id="lab" required name="lab" style="width: 50%; padding: 10px;  border-style: none; border-radius: 20px; color: grey;">
+                  <option value='default' selected disabled>Tag Lab</option>
+                  {% for l in lab_list  %}
+                    {% if l[0] != '' %}
+                  <option value="{{l[0]}}">{{l[0]}}</option>
+
+                    {% endif %}
+                  {% endfor %}
+            </select><br>
+      </div>
+      <div class='col' style="background-color: white;margin-right:12px; text-align: center;">
+         <input type="file" name="file" id="file" style="width: 50%; padding: 10px;  border-style: none; border-radius: 20px; color: grey;">
+      </div>
+    </div>
+    <div class="row">
+      <textarea id='post_content' name="post_content" placeholder="{% if session['type'][0]=='professor' %}About{% else %}Field of Interest{% endif %}"></textarea>
+    </div>
+  </form>
+  </div>
+  <script type="text/javascript">
+    function clear_post() {
+      document.getElementById('post_content').value = '';
+      document.getElementsByName('prof')[0].value = 'default';
+      document.getElementsByName('lab')[0].value = 'default';
+    }
+  </script>
+{% for post in vote_result %}
+  <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;border-radius:50px;margin:15px;box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);">
+    <!--  -->
+  <h3 style="text-align:center;">Research Area:{{post[0][1]}}</h3>
+  
+  <p class="text-center">
+    Lab:<a href="/lab_info/{{post[0][2]}}">{{post[0][2]}}</a><br>
+    Professor:<a href="/about/{{post[0][4]}}">{{post[0][4]}}</a><br>
+    {% if post[0][8] != post[0][4] %}
+    Student:<a href="/about/{{post[0][3]}}">{{post[0][3]}}</a><br>
+    {% endif %}
+    
+  </p>
+  {% if post[0][8] == post[0][4] %}
+  <p class="text-center"><b>About</b><br>{{post[0][7]}}</p>
+  {% else %}
+  <p class="text-center"><b>Field of Interest</b><br>{{post[0][7]}}</p>
+  {% endif %}
+  {% if post[0][9]=="yes" %}
+  <p class="text-center"><a href="/show_file/{{post[0][0]}}.pdf"><img class="avatar" src="https://www.zamzar.com/images/filetypes/pdf.png" class="user_image"></a> <a>Download Research Paper</a></p>
+  {% endif %}
+    <p class="text-center">
+        <a href="vote_count_increment/{{post[0][0]}}"><button id="{{post[0]}}" style="{%if post[1]=='T' %}color:red;{%else%}color:black;{%endif%}" class="heart" >Vote
+          <span class="glyphicon glyphicon-heart"></span></button> {{post[0][6]}}</a>
+      </p>
+      <!-- <a href="http://file:///home/ksh/Downloads/navieKNthNum.cpp">kholo</a> -->
+</div><br>
+{% endfor %}
+</div>
+</div>
+<script src="{{ url_for('static',filename = 'jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename = 'wow.min.js') }}"></script>
+<script src="{{ url_for('static',filename = 'bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename = 'custom.js') }}"></script>
+<script type="text/javascript"> function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-theme-d1";
+    } else { 
+        x.className = x.className.replace("w3-show", "");
+        x.previousElementSibling.className = 
+        x.previousElementSibling.className.replace(" w3-theme-d1", "");
+    }
+}</script>
+{% endblock %}    

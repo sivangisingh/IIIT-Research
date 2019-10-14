@@ -1,0 +1,52 @@
+{% extends 'header.html' %}
+{% block body %}
+<div class="container updt">
+	<h1 style="margin-bottom: 20px; "> Update Your Profile </h1>
+	<form action="/update_info" style="width: 100%; position: relative;" method="POST">
+
+		<input class='updt_fields' onfocus="inc_w(this);" style="width: 300px;" onblur="dcr_w(this);" type="email" name="id" placeholder="{{li[0]}}"><br>
+
+		<input class='updt_fields' onfocus="inc_w(this);" onblur="dcr_w(this);"style="width: 200px; "type="text" name="name" value="{{li[1]}}" placeholder="What's your name?"><br>
+
+		<input class='updt_fields' onfocus="inc_w(this);" onblur="dcr_w(this);"style="width: 200px;" type="password" name="pass" value="{{li[2]}}" placeholder="Enter Password"><br>
+
+		<input class='updt_fields' onfocus="inc_w(this);" onblur="dcr_w(this);"style="width: 200px;" type="password" name="c_pass" placeholder="Confirm Password"><br>
+
+		<input class='updt_fields' onfocus="inc_w(this);" onblur="dcr_w(this);"style="width: 210px;" type="text" name="native" value="{% if li[4]!=None %}{{li[4]}}{% endif %}" placeholder="Where Are You From?"><br>
+
+		<input class='updt_fields' style="width: 200px; color: grey; text-align: center;"type="date" value="{{li[5]}}" name="dob"><br>
+
+		<button class="submit heart" style=" margin: 10px; border-style: none; border-radius: 30px; background: linear-gradient(to right, #9C27B0, #E040FB);color: white; padding: 15px;" align="center" onclick="check()">Update Profile</button>
+	</form>
+</div>
+</div>
+<script type="text/javascript">
+	function inc_w(element) {
+		element.style.width = '80%';
+	}
+	function dcr_w(element) {
+		element.style.width = '200px';
+	}
+	function confirm_pass() {
+
+	}
+	function check() {
+		if( !document.getElementsByName('id')[0].checkValidity())
+			document.getElementsByName('id')[0].innerHTML = document.getElementsByName('id')[0].validationMessage;
+		if( !document.getElementsByName('name')[0].checkValidity())
+			document.getElementsByName('name')[0].innerHTML = document.getElementsByName('name')[0].validationMessage;
+		if( !document.getElementsByName('native')[0].checkValidity())
+			document.getElementsByName('native')[0].innerHTML = document.getElementsByName('native')[0].validationMessage;
+		if( !document.getElementsByName('dob')[0].checkValidity())
+			document.getElementsByName('dob')[0].innerHTML = document.getElementsByName('dob')[0].validationMessage;
+
+		if( document.getElementsByName('pass')[0].value != document.getElementsByName('c_pass')[0].value)
+		{
+			alert("Password doesn't match")
+			document.getElementsByName('c_pass')[0].value = '';
+			document.getElementsByName('pass')[0].value = '';
+			}
+		
+	}
+</script>
+{% endblock %}

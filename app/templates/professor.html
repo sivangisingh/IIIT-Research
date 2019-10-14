@@ -1,0 +1,30 @@
+{% extends 'header.html' %}
+
+{% block body %}  
+
+<div class="container">
+<h1 style="text-align: center;">
+    Lists Of Professors
+</h1>	{%if prof_li==[] %}
+			<div class="container">
+      		<div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px;margin: 10px;">
+        		<div ><h1 class="text-center">No Professors...!!</h1>
+      		</div>
+    		</div>
+    		</div>    
+
+		{% endif %}
+		{% for p in prof_li %}
+			<div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px;margin: 10px;">
+			<div class="text-center" ><a href="/about/{{p[1]}}">{{p[0]}}</a ></div>
+		</div>
+
+
+		{% endfor %}
+</div>
+<script type="text/javascript">
+	function sendID(id){
+  		document.getElementById("prof_abt").action = '/about/' + id;
+	}
+</script>
+{% endblock %}

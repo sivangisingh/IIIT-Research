@@ -1,0 +1,126 @@
+{% extends 'header.html' %}
+{% block body %}
+<!-- Page Container -->
+<div class=" w3-content" style="max-width:1800px;">    
+  <!-- The Grid -->
+  <div class="w3-row w3" style="margin-top:15px">
+    <!-- Left Column -->
+    <div class="w3-col m3 ">
+      <!-- Profile -->
+      <div class="w3-card w3-round w3-white" style="border-radius: 20px;">
+        <div class="w3-container w3-white" style="border-radius: 20px;">
+         <h4 class="w3-center">
+          <br>
+         <b><span style="color:#E040FB;">{{li[0]}}</span></b></h4>
+         <hr>
+         <p><i class="fa fa-pencil fa-fw w3-margin-right"></i> {{li[1]}}</p>
+         <p><i class="fa fa-home fa-fw w3-margin-right"></i> {{li[2]}}</p>
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right"></i> {{li[3]}}</p>
+         <div class="w3-row w3-opacity">
+          {% if id==li[4] %}
+              <form class="form1" action="/update">
+              <button class="w3-button w3-block  w3-section ulul " id="update" title="Accept" style="border-radius: 20px; color:black;">Update Profile</button>
+           </form>
+           {% endif %}
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="w3-card w3-round w3-white w3-center" style="border-radius: 20px;">
+        <div class="w3-container">
+          <a style="color:#E040FB;">Email id : </a><span>{{li[4]}}</span>
+          <div class="w3-row w3-opacity">
+            {% if id!=li[4] %}
+            <form class="form1" action="/follow/{{li[4]}}">
+              <button class="w3-button w3-block  w3-section" title="Accept" id="follow" style="border-radius: 20px;">Follow <i class="fa fa-check"></i></button></form>
+    
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <!-- Accordion -->
+      
+      <!-- Interests --> 
+    <!-- End Left Column -->
+    </div>
+    
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+    {% if posts==[] %}
+    <div class="container">
+      <div style="color: #777;background-color:white;text-align:center;padding:25px 40px;text-align: justify;border-radius:50px;margin: 10px;">
+        <div ><h1 class="text-center">No posts...!!</h1>
+      </div>
+    </div>
+    </div>    
+    {% endif %}
+    {% for post in posts %}
+  <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;border-radius:50px;margin:15px;box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14); ">
+ <h3 style="text-align:center;">Research Area:{{post[1]}}</h3>
+  <p class="text-center">
+     Lab: <a href="/lab_info/{{post[2]}}">{{post[2]}}</a><br>
+    Professor: <a href="/about/{{post[4]}}">{{post[4]}}</a><br>
+  </p>
+  <p class="text-center"><b>About</b><br>{{post[7]}}</p>
+  {% if post[9]=="yes" %}
+  <p class="text-center"><a href="/show_file/{{post[0]}}.pdf"><img class="avatar" src="https://www.zamzar.com/images/filetypes/pdf.png" class="user_image"></a> <a>Download Research Paper</a></p>
+  {% endif %}
+  <p class="text-center">
+          <span class="glyphicon glyphicon-heart" style="color:red;" class="heart"></span> {{post[6]}} votes</a>
+      </p>
+</div><br>    
+{% endfor %}
+    <!-- End Middle Column -->
+     </div>
+    
+    <!-- Right Column -->
+    <div class="w3-col m2">
+      <div class="w3-card w3-round" style="border-radius: 20px;">
+        <div class="w3-white" style="border-radius: 20px;">
+          <button onclick="myFunction('Demo1')" class="w3-button w3-block ulul w3-left-align" style="border-radius: 20px;"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Followers</button>
+          <div id="Demo1" class="w3-hide w3-container">
+             {% for i in lis %}
+            <a href="/about/{{i[1]}}">{{i[0]}}</a ><br>
+            {% endfor %}
+          </div>
+        </div>      
+      </div>
+      <br>
+      
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+<!-- End Page Container -->
+</div>
+<script>
+// Accordion
+function myFunction(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-theme-d1";
+    } else { 
+        x.className = x.className.replace("w3-show", "");
+        x.previousElementSibling.className = 
+        x.previousElementSibling.className.replace(" w3-theme-d1", "");
+    }
+}
+function fun(id){
+  var x = document.getElementById(id);
+  var y="/about/"+x.value;
+  window.location = y;
+}
+window.onload=function load(){
+  if( {{followed}} == 1){
+        var x=document.getElementById("follow");
+        x.style.background="linear-gradient(to right, #9C27B0, #E040FB)";
+      }
+}
+</script>
+{% endblock %}
